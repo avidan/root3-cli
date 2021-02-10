@@ -1,3 +1,7 @@
+# for build
+xterm.css
+xterm.js
+
 # Logs
 logs
 *.log

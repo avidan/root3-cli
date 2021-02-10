@@ -1,8 +1,8 @@
 <!doctype html>
   <html>
     <head>
-      <link rel="stylesheet" href="node_modules/xterm/css/xterm.css" />
-      <script src="node_modules/xterm/lib/xterm.js"></script>
+      <link rel="stylesheet" href="xterm.css" />
+      <script src="xterm.js"></script>
     </head>
     <body>
       <div id="terminal"></div>
@@ -10,30 +10,32 @@
         var term = new Terminal();
         term.open(document.getElementById('terminal'));
 
-        // help output of each command
+        // TEXT FOR HELP COMMAND
+
         const man = {
           help: "list all commands",
           home: "visit the Root homepage"
         }
 
-        // map each command to a function
+        // TERMINAL COMMANDS
+
         const commands = {
           help: function() {
             const maxCmdLength = 12;
-            // term.writeln("USAGE");
-
             Object.entries(man).forEach(function(kv) {
               var cmd = kv[0];
               const rightPad = maxCmdLength - cmd.length;
               cmd = cmd.concat(" ".repeat(rightPad));
-
               term.writeln(cmd + kv[1]);
             });
           },
+
           home: function() {
             openURL("https://root.vc");
           }
         }
+
+        // END TERMINAL COMMANDS
 
         function runFakeTerminal() {
           if (term._initialized) {
